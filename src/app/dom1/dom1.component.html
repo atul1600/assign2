@@ -1,0 +1,73 @@
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.bundle.min.js"></script>
+
+<h4 style="text-align: center">Domain 1 component</h4>
+<div class="container">
+
+<div class="row">
+  
+
+<div style="width: 45%;" class="col col-lg-5">
+  <canvas
+      baseChart
+      [chartType]="'bar'"
+      [datasets]="chartData"
+      [labels]="chartLabels"
+      [options]="chartOptions"
+      [legend]="true"
+      (chartClick)="onChartClick($event)">
+  </canvas>
+</div>
+<br>
+<div style="width: 45%;" class="col col-lg-5">
+  <canvas
+      baseChart
+      [chartType]="'pie'"
+      [datasets]="chartData"
+      [labels]="chartLabels"
+      [options]="chartOptions"
+      [legend]="true"
+      (chartClick)="onChartClick($event)"
+      (click)="showTable()">
+  </canvas>
+  <div><h5>click on pie chart to see table</h5></div>
+</div>
+</div>
+
+<form>
+
+
+
+  <table border="2" *ngIf = "showMe">
+  	<tr>
+  		<th *ngFor = "let charts of chartLabels">
+  			{{charts}} 
+  		</th>
+  	</tr>
+
+  	<tr *ngFor = "let data of chartData"> 
+  		<td *ngFor = "let dato of data.data" (click)= "editclick()">
+          {{dato}}
+        
+        
+
+   		</td>
+  	</tr>
+</table>
+<h6 *ngIf = "showMe">click on table to see next table</h6>
+<table border="1" *ngIf = "notShow">
+  <tr>
+    <th *ngFor = "let chart of week">
+      {{chart}}
+    </th>
+  </tr>
+  <tr>
+    <td *ngFor = "let week of weekdata">
+      {{week}}
+    </td>
+  </tr>
+</table>
+
+</form>
+</div>
+        
